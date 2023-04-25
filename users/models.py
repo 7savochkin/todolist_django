@@ -7,7 +7,6 @@ from django.core.validators import EmailValidator
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-
 from base.validators import PhoneValidator
 
 
@@ -47,6 +46,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True,
                               validators=(EmailValidator,))
     phone = models.CharField(max_length=17, validators=(PhoneValidator,))
+    is_valid_phone = models.BooleanField(
+        _('phone valid'),
+        default=False,
+        help_text=_('Designates whether the user has valid phone number.')
+    )
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,

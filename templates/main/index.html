@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Let's Start
+{% endblock %}
+
+{% block content %}
+    <div class="main-content">
+        <h1 class="main-content__title">TaskDo</h1>
+        <h3 class="main-content__subtitle">Manage You Task Checklist
+            Easily</h3>
+        <a class="main-content__btn" href="{% url "sign_in"%}">Let's Start</a>
+    </div>
+{% endblock %}
