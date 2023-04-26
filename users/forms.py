@@ -21,7 +21,7 @@ class SignInForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.request = request
         self.fields['email'].required = False
-        # self.fields['phone'].required = False
+        self.fields['phone'].required = False
 
     def clean(self):
         email = self.cleaned_data.get('email')

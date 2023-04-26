@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, FormView
 
@@ -13,6 +14,11 @@ class SignInView(FormView):
     form_class = SignInForm
     success_url = reverse_lazy('index')
 
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(reverse_lazy('index'))
+        return super().get(request, *args, **kwargs)
+
     def get_form(self, form_class=None):
         if form_class is None:
             form_class = self.get_form_class()
@@ -26,6 +32,11 @@ class SignUpView(FormView):
     template_name = 'auth/sign_up.html'
     form_class = SignUpForm
     success_url = reverse_lazy('index')
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(reverse_lazy('index'))
+        return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
         if form.is_valid():

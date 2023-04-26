@@ -1,14 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import ModelBackend
 
-
 UserModel = get_user_model()
 
 
 class EmailModelBackend(ModelBackend):
 
     def authenticate(self, request, email=None, password=None, **kwargs):
-        if email is None or password is None:
+        if email is None or password is None: # noqa
             return
         try:
             user = UserModel._default_manager.get(email=email)  # noqa
@@ -25,7 +24,7 @@ class EmailModelBackend(ModelBackend):
 class PhoneModelBackend(ModelBackend):
 
     def authenticate(self, request, phone=None, password=None, **kwargs):
-        if phone is None or password is None:
+        if phone is None or password is None: # noqa
             return
         try:
             user = UserModel._default_manager.get(phone=phone)  # noqa

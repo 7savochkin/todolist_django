@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     # external apps
     'django_extensions',
     # own apps,
-    'users',
+    'users.apps.UsersConfig',
     'tasks.apps.TasksConfig',
 ]
 
