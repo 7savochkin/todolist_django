@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import ModelBackend
 
+
 UserModel = get_user_model()
 
 
@@ -10,7 +11,7 @@ class EmailModelBackend(ModelBackend):
         if email is None or password is None:
             return
         try:
-            user = UserModel._default_manager.get_by_natural_key(email=email)
+            user = UserModel._default_manager.get(email=email)  # noqa
         except UserModel.DoesNotExist:
             # Run the default password hasher once to reduce the timing
             # difference between an existing and a nonexistent user (#20760).
@@ -27,7 +28,7 @@ class PhoneModelBackend(ModelBackend):
         if phone is None or password is None:
             return
         try:
-            user = UserModel._default_manager.get(phone=phone) # noqa
+            user = UserModel._default_manager.get(phone=phone)  # noqa
         except UserModel.DoesNotExist:
             UserModel().set_password(password)
         else:
@@ -37,4 +38,4 @@ class PhoneModelBackend(ModelBackend):
 
     def user_can_authenticate(self, user):
         can_auth = super().user_can_authenticate(user)
-        return can_auth and True
+        return can_auth and user.is_valid_phone

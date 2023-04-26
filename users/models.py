@@ -45,7 +45,8 @@ class UserManager(DjangoUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True,
                               validators=(EmailValidator,))
-    phone = models.CharField(max_length=17, validators=(PhoneValidator,))
+    phone = models.CharField(max_length=17, unique=True,
+                             validators=(PhoneValidator,))
     is_valid_phone = models.BooleanField(
         _('phone valid'),
         default=False,

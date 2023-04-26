@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Sign In
+    Sign Up
 {% endblock %}
 
 {% block header %}
@@ -22,7 +22,7 @@
                         <label class="form-auth__label placeholder">{{ field.label }}</label>
                     </div>
                 {% endfor %}
-                  {% if form.non_field_errors %}
+                 {% if form.non_field_errors %}
                     <div class="form-auth__error">
                         <ul class="form-error_list">
                             {% for error in form.non_field_errors %}
@@ -31,14 +31,13 @@
                         </ul>
                     </div>
                 {% endif %}
-                <input class="form-auth__btn" type="submit" value="Sign In">
+                <input class="form-auth__btn" type="submit" value="Sign Up">
                 <p class="form-auth__text form-auth-subtext">
-                    Don't have an account?
-                    <a class="form-auth__link" href="{% url 'sign_up' %}">
-                        Sign Up
+                    Do you have an account?
+                    <a class="form-auth__link" href="{% url 'sign_in' %}">
+                        Sign In
                     </a>
                 </p>
-
             </form>
         </div>
     </div>

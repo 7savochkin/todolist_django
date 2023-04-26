@@ -28,3 +28,4 @@ class UserAdmin(admin.ModelAdmin):
          {'fields': ('last_login', 'date_joined', 'is_active')}),
     )
     ordering = ('email',)
+    readonly_fields = ('last_login', 'date_joined')
