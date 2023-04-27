@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # own apps,
     'users.apps.UsersConfig',
     'tasks.apps.TasksConfig',
+    'tracking.apps.TrackingConfig',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'base.middleware.ErrorTraceMiddleware',
 ]
 
 ROOT_URLCONF = 'base.urls'
@@ -142,3 +144,4 @@ MEDIA_ROOT = 'media'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+APPEND_SLASH = True

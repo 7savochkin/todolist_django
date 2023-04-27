@@ -68,11 +68,6 @@ class SignUpForm(forms.Form):
         first_password = self.cleaned_data['first_password']
         second_password = self.cleaned_data['second_password']
 
-        try:
-            is_existed = User.objects.get(email=email)
-        except User.DoesNotExist:
-            is_existed = False
-
         if not email or not phone:
             self.errors.update({
                 'ValidationError': 'Email and phone number label is required'
@@ -83,7 +78,16 @@ class SignUpForm(forms.Form):
                 'ValidationError': 'Phone should be +11111111'
             })
             raise ValidationError('Phone should be +11111111')
-        elif is_existed:
+        else:
+            try:
+                if email:
+                    is_existed = User.objects.get(email=email)
+                else:
+                    is_existed = User.objects.get(phone=phone)
+            except User.DoesNotExist:
+                is_existed = False
+
+        if is_existed:
             self.errors.update({
                 'ValidationError': 'This user is already exists'
             })
@@ -102,10 +106,10 @@ class SignUpForm(forms.Form):
                 r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$",
                 first_password):  # noqa
             self.errors.update({
-                'ValidationError': 'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:' # noqa
+                'ValidationError': 'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number' # noqa
             })
             raise ValidationError(
-                'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:')  # noqa
+                'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number')  # noqa
         return super().clean()
 
     def save(self):

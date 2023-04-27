@@ -4,13 +4,15 @@
     Sign In
 {% endblock %}
 
+{% block header %}{% endblock %}
+
 {% block content %}
     <div class="main-form">
         <div class="form-wrap">
             <form class="form-auth" method="post">
                 {% csrf_token %}
-                <h1 class="form-auth__title">Welcome</h1>
-                <p class="form-auth__text">Let's create your account!</p>
+                <h1 class="form-auth__title">Welcome Back!</h1>
+                <p class="form-auth__text">To keep connected with us please sign in with your personal info</p>
                 {% for field in form %}
                     <div class="form-auth__field">
                         {{ field }}
@@ -39,3 +41,5 @@
         </div>
     </div>
 {% endblock %}
+
+{% block footer %}{% endblock %}
