@@ -1,0 +1,23 @@
+{% load static %}
+
+<div class="container">
+    <div class="header__inner">
+        <div class="header-profile">
+            <a class="header-profile__link" href="#"><img
+                    class="header-profile__img"
+                    src="{% static 'images/user_avatar.png' %}"></a>
+            <div class="header-profile__text">
+                <h3 class="header-profile__welcome">Hi {{ request.user.email }} 👋🏽</h3>
+                <h3 class="header-profile__counter">4 tasks pending</h3>
+            </div>
+        </div>
+        <div class="header-title">
+            <h1 class="header-title__title app-title">TaskDo</h1>
+        </div>
+        {#    <a class="header__link"><img class="header__settings" src="{% static 'images/settings.svg' %}"></a>#}
+        <div class="header-settings"><a class="header-settings__link"><img
+                class="header-settings__icon"
+                src="{% static 'images/settings.png' %}"></a>
+        </div>
+    </div>
+</div>

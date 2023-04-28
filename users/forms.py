@@ -62,6 +62,10 @@ class SignUpForm(forms.Form):
                                       widget=forms.PasswordInput(
                                           attrs={'placeholder': ' '}))
 
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.request = request
+
     def clean(self):
         email = self.cleaned_data['email']
         phone = self.cleaned_data['phone']
@@ -118,4 +122,5 @@ class SignUpForm(forms.Form):
         new_user.is_valid_phone = True
         new_user.set_password(self.cleaned_data['first_password'])
         new_user.save()
+        login(self.request, new_user)
         return new_user

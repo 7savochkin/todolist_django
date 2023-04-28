@@ -7,36 +7,39 @@
 {% block header %}{% endblock %}
 
 {% block content %}
-    <div class="main-form">
-        <div class="form-wrap">
-            <form class="form-auth" method="post">
-                {% csrf_token %}
-                <h1 class="form-auth__title">Welcome</h1>
-                <p class="form-auth__text">Let's create your account!</p>
-                {% for field in form %}
-                    <div class="form-auth__field">
-                        {{ field }}
-                        <div class="cut"></div>
-                        <label class="form-auth__label placeholder">{{ field.label }}</label>
-                    </div>
-                {% endfor %}
-                 {% if form.non_field_errors %}
-                    <div class="form-auth__error">
-                        <ul class="form-error_list">
-                            {% for error in form.non_field_errors %}
-                                <li class="form-error_item">{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
-                <input class="form-auth__btn" type="submit" value="Sign Up">
-                <p class="form-auth__text form-auth-subtext">
-                    Do you have an account?
-                    <a class="form-auth__link" href="{% url 'sign_in' %}">
-                        Sign In
-                    </a>
-                </p>
-            </form>
+    <div class="container">
+        <div class="main-form">
+            <div class="form-wrap">
+                <form class="form-auth" method="post">
+                    {% csrf_token %}
+                    <h1 class="form-auth__title">Welcome</h1>
+                    <p class="form-auth__text">Let's create your account!</p>
+                    {% for field in form %}
+                        <div class="form-auth__field">
+                            {{ field }}
+                            <div class="cut"></div>
+                            <label class="form-auth__label placeholder">{{ field.label }}</label>
+                        </div>
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                        <div class="form-auth__error">
+                            <ul class="form-error_list">
+                                {% for error in form.non_field_errors %}
+                                    <li class="form-error_item">{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <input class="form-auth__btn" type="submit"
+                           value="Sign Up">
+                    <p class="form-auth__text form-auth-subtext">
+                        Do you have an account?
+                        <a class="form-auth__link" href="{% url 'sign_in' %}">
+                            Sign In
+                        </a>
+                    </p>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

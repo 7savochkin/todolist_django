@@ -23,7 +23,6 @@ class Task(LifecycleModelMixin, PrimaryKeyMixin):
     is_done = models.BooleanField(default=False)
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
     task_book = models.ForeignKey(TaskBook, on_delete=models.CASCADE)
-    tasks = models.ManyToManyField('tasks.Task', blank=True)
 
     def __str__(self):
         return f"{self.title} | {self.task_book} | {self.expired_date}"

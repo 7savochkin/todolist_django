@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import environ
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -139,6 +141,10 @@ STATICFILES_DIRS = ['static_dev']
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = 'media'
+
+LOGOUT_REDIRECT_URL = reverse_lazy('index')
+LOGIN_REDIRECT_URL = reverse_lazy('menu')
+LOGIN_URL = reverse_lazy('sign_in')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

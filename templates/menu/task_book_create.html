@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-    Sign In
+    Create Task Book
 {% endblock %}
 
-{% block header %}{% endblock %}
-
 {% block content %}
-    <div class="container">
+      <div class="container">
         <div class="main-form">
             <div class="form-wrap">
                 <form class="form-auth" method="post">
                     {% csrf_token %}
-                    <h1 class="form-auth__title">Welcome Back!</h1>
-                    <p class="form-auth__text">To keep connected with us please
-                        sign in with your personal info</p>
+                    <h1 class="form-auth__title">Create New Task Book!</h1>
+                    <p class="form-auth__text">Task Books allow you to enter tasks</p>
                     {% for field in form %}
+                        {% if field.label != 'User' %}
                         <div class="form-auth__field">
                             {{ field }}
                             <div class="cut"></div>
                             <label class="form-auth__label placeholder">{{ field.label }}</label>
                         </div>
+                        {% endif %}
                     {% endfor %}
                     {% if form.non_field_errors %}
                         <div class="form-auth__error">
@@ -32,18 +32,9 @@
                         </div>
                     {% endif %}
                     <input class="form-auth__btn" type="submit"
-                           value="Sign In">
-                    <p class="form-auth__text form-auth-subtext">
-                        Don't have an account?
-                        <a class="form-auth__link" href="{% url 'sign_up' %}">
-                            Sign Up
-                        </a>
-                    </p>
-
+                           value="Create">
                 </form>
             </div>
         </div>
     </div>
 {% endblock %}
-
-{% block footer %}{% endblock %}
