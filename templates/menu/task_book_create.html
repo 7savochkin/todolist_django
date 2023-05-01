@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Create Task Book
+{% endblock %}
+
+{% block content %}
+      <div class="container">
+        <div class="main-form">
+            <div class="form-wrap">
+                <form class="form-auth" method="post">
+                    {% csrf_token %}
+                    <h1 class="form-auth__title">Create New Task Book!</h1>
+                    <p class="form-auth__text">Task Books allow you to enter tasks</p>
+                    {% for field in form %}
+                        {% if field.label != 'User' %}
+                        <div class="form-auth__field">
+                            {{ field }}
+                            <div class="cut"></div>
+                            <label class="form-auth__label placeholder">{{ field.label }}</label>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                        <div class="form-auth__error">
+                            <ul class="form-error_list">
+                                {% for error in form.non_field_errors %}
+                                    <li class="form-error_item">{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <input class="form-auth__btn" type="submit"
+                           value="Create">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

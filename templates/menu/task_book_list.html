@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block content %}
+    <div class="content-container">
+        <div class="create-book">
+            <div class="create-book__inner">
+                <a class="create-book__link" href="{% url 'create_task_book' %}">
+                    <img class="create-book__img" src="{% static 'images/add_table_book.png' %}"></a>
+                <p class="create-book__text">Add New Task Book</p>
+            </div>
+        </div>
+        <div class="task-book-all">
+            <div class="task-book__inner">
+                {% for book in task_books %}
+                    <a class="book__link"
+                       href="{% url 'book_detail' book.id %}">
+                        <div class="book">
+                            <h1 class="book__title">{{ book.title }}</h1>
+                            <p class="book__descr">{{ book.description|truncatechars:50 }}</p>
+                            <p class="book__expired-date">{{ book.expired_date }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

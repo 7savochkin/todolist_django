@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Task Book - {{ task_book.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="content-container">
+        <div class="task-book__info">
+            <div class="task-book__header">
+                <div class="task-book__title">
+                    {{ task_book.title }}
+                </div>
+                <div class="task-book__expired-date">
+                    {{ task_book.expired_date }}
+                </div>
+            </div>
+            <div class="task-book__content">
+                <p class="book__descr">
+                    {{ task_book.description }}
+                </p>
+            </div>
+        </div>
+        <div class="create-task">
+            <div class="create-book__inner">
+                <a class="create-book__link" href="#">
+                    <img class="create-book__img" src="{% static 'images/add_table_book.png' %}"></a>
+                <p class="create-book__text">Add New Task</p>
+            </div>
+        </div>
+        <div class="tasks">
+            <ul class="tasks__list">
+                {% for task in task_book.task_set.iterator %}
+                    <li class="task__list-item">
+                        <div class="task__item-component">
+                            <a class="task__item-del"><img
+                                    class="task__item-del-img"
+                                    src="{% static 'images/del.png' %}">
+                            </a>
+                        </div>
+                        <div class="task__item-component">
+                            <input type="checkbox" class="task__item-checkbox"
+                                   name="is_done" value="{{ task.is_done }}">
+                            {#                            <a class="task__item-done"><img#}
+                            {#                                    class="task__item-done-img"#}
+                            {#                                    src="{% static 'images/dont_done.png' %}">#}
+                            {#                            </a>#}
+                        </div>
+                        <div class="task__item-component"><p
+                                class="task__item-title task__item-text">{{ task.title }}</p>
+                        </div>
+                        <div class="task__item-component">
+                            <p class="task__item-date task__item-text">{{ task.expired_date }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
